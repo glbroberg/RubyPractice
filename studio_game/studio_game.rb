@@ -1,18 +1,43 @@
 # ***First character of a variable name must be a lowercase letter or an underscore***
+class Player
 
-player1Name = 'larry'
-player2Name = 'curly'
-player3Name = 'moe'
+  attr_accessor :player_name
+  attr_reader :player_health
 
-player1Health = 60
-player2Health = 20
-player3Health = 80
+  # Overriding setter method for player_name
+  def player_name=(new_name)
+    @player_name = new_name.capitalize
+  end
 
+  def score
+    @player_name.length * @player_health
+  end
 
-def say_hello(name, health)
-  "I'm #{name} with a health of #{health}"
+  def initialize(name, health=0)
+    @player_name = name
+    @player_health = health
+  end
+
+  def blam
+    puts("#{@player_name} got blammed!")
+  end
+
+  def w00t
+    puts("#{@player_name} got w00ted!")
+  end
+
+  def to_s
+    "Player Name: #{@player_name} \nPlayer Health: #{@player_health} \nPlayer Score: #{score}"
+  end
 end
 
-puts say_hello(player1Name.capitalize, player1Health)
-puts say_hello(player2Name.capitalize, player2Health)
-puts say_hello(player3Name.capitalize, player3Health)
+player1 = Player.new('larry', 60)
+player2 = Player.new('curly', 20)
+player3 = Player.new('moe', 100)
+
+puts player1.player_name
+puts player1.player_health
+puts player3.inspect
+puts player1.score
+player1.player_name = "lawrence"
+puts player1
